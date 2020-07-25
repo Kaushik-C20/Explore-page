@@ -1,0 +1,28 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Location</ion-title>
+		<!-- <ion-icon name="information-circle"></ion-icon> -->
+		<ion-buttons fill="outline" color="dark" slot="end" (click)="dismiss()">
+			<ion-icon name="close-outline"></ion-icon>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+	<div style="margin-bottom: 10px;">
+		<ion-toolbar>
+			<ion-searchbar [(ngModel)]="value"
+			mode="md" inputmode="text" placeholder="Select Location"></ion-searchbar>
+		</ion-toolbar>
+
+		<div *ngIf='!entered'>
+			<div *ngFor="let country of countries" class="countryDiv">
+				<ion-item *ngIf="(country.substring(0,value.length).toLowerCase() == value.toLowerCase().trim())||(value.toLowerCase().trim().split(' ').join('')==country.toLowerCase().split(' ').join('').slice(0,value.toLowerCase().trim().split(' ').join('').length))" (click)="Count(country)">
+					{{ country }}
+				</ion-item>
+			</div>
+		</div>
+	</div>
+
+	<ion-button color='success' (click)="Submit()">Submit</ion-button>
+</ion-content>

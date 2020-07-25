@@ -1,20 +1,124 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item lines="none" style="width:100%;margin-top: 10px;margin-bottom: 10px;">
+    <div>
+      <img style="width: 40px;" src="https://dashboard.wobb.in/assets/icon-20@3x.png" />
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-select value="instagram" okText="Ok" cancelText="Dismiss" style="border: 1px solid rgb(211, 211, 211);">
+      <ion-select-option value="instagram">Instagram</ion-select-option>
+      <ion-select-option value="youtube">Youtube</ion-select-option>
+    </ion-select>
+    <ion-button fill="outline" color="light" size="small" style="padding-left: 10px;">
+      <ion-icon name="bookmark" style="color: #868e96;"></ion-icon>
+      <p style="margin-left: 8px;color: #868e96;">My Influencers</p>
+    </ion-button>
+
+  </ion-item>
+
+  <ion-item lines="none" style="width:100%;margin-top: 6px;margin-bottom: 10px;">
+    <ion-searchbar [(ngModel)]="value" inputmode="text" placeholder="Filter by Name,Followers,Eng.Rate...">
+    </ion-searchbar>
+  </ion-item>
+
+  <!-- <ion-item lines="none" style="margin-top: 10px;margin-bottom: 10px;"> -->
+  <ion-button color="medium" style="margin-right: 5px;" (click)="presentPopover()" expand="full">
+    Categories
+  </ion-button>
+  <ion-button color="medium" style=" margin-right: 5px;" (click)="presentLocation()" expand="full">
+    Location
+  </ion-button>
+  <!-- <ion-button fill="outline" color="medium" style=" margin-right: 5px;" expand="full">
+      Followers</ion-button>
+    <ion-button color="medium" style=" margin-right: 5px;" expand="full">
+      Engagement</ion-button>
+    <ion-button fill="outline" color="medium" style=" margin-right: 5px;" expand="full">Contact
+    </ion-button>
+    <ion-button fill="outline" color="medium" style=" margin-right: 5px;" expand="full">
+      Audience</ion-button>
+    <ion-button fill="outline" color="medium" style=" margin-right: 5px;" expand="full">
+      Authenticity</ion-button>
+    <ion-button fill="outline" color="medium" style=" margin-right: 5px;" expand="full">
+      Advanced metrics</ion-button> -->
+  <!-- </ion-item> -->
+
+  <div style="margin-top: 20px;background:rgba(237, 237, 237, 0.7);">
+    <p style="font-family: Source Sans Pro,sans-serif;
+      color: #111;font-size: 16px;padding-top: 20px;
+      margin-bottom: 0px;padding-left: 21px;">
+      More than 1 result
+    </p>
+
+    <ion-card *ngFor="let item of items|filter:value;let i=index;" style="text-align: center;margin-left: 15px;margin-right: 15px;">
+      <img
+        src="{{item[4]?item[4] : 'https://pyxis.nymag.com/v1/imgs/cb8/b28/3695d66a5194ffd83ca7c54982af8f81f1-20-trevor-noah.rsquare.w1200.jpg'}}"
+        style="border-radius: 100%;width: 40%;margin-top: 10px;">
+      <!-- </ion-img> -->
+      <!-- <ion-icon name="people-circle-outline"></ion-icon> -->
+      <ion-card-content style="text-align: center;">
+        <h2 style="font-size: x-large;font-weight: bold;color: #2a416f;">{{item[1]}}</h2>
+        <h2 style="color: #868e96;font-size: x-large;font-weight: 700;">{{item[0]}} </h2>
+        <h2 style="color: #868e96;font-size: large;">
+          Be confident and be kind to your body
+        </h2>
+      </ion-card-content>
+
+      <ion-grid style="margin-top: 0;padding-top: 0;">
+        <ion-row>
+          <ion-col size="6" style="text-align: center;">
+            <p style="color: #000;font-size: x-large;font-weight: 700; margin-bottom: 0px;">{{item[2]}}</p>
+            <p style="font-size: 14px;
+                  font-weight: 400;color: #868e96;margin-top: 5px;">FOLLOWERS
+            </p>
+          </ion-col>
+          <ion-col size="6" style="text-align: center;">
+            <p style="color: #000;font-size: x-large;font-weight: 700;margin-bottom: 0px;">{{item[3]}}</p>
+            <p style="font-size: 14px;font-weight: 400;color: #868e96;margin-top: 5px;">ENGAGEMENT</p>
+          </ion-col>
+        </ion-row>
+        
+        <!-- <ion-row>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-icon style=" font-size: 15px;" name="pricetag"></ion-icon>
+              <p style="margin-left: 3px;font-size: small;">Plus Size</p>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item lines="none">
+              <ion-icon style="font-size: 15px;" name="pricetag"></ion-icon>
+              <p style="margin-left: 3px;font-size: small;">Fashion</p>
+            </ion-item>
+          </ion-col>
+        </ion-row> -->
+      </ion-grid>
+
+     
+      <ion-item lines="none">
+        <ion-button shape="round" color="light" size="small" style="padding:0px; padding-right: 5px;">
+          <ion-icon style="font-size: 15px;" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+        <ion-button shape="round" color="light" size="small" style="padding:0px;">
+          <ion-icon style="font-size: 15px;" name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+        <div>
+          <a (click)="presentRating()" target="_blank">
+            <ion-icon style="padding: 5px;font-size: 20px;color: #000; " name="star-outline"></ion-icon>
+          </a>
+          <a (click)="presentNotes()" target="_blank">
+            <ion-icon style="padding: 5px;font-size: 20px;color: #000;" name="chatbox-outline"></ion-icon>
+          </a>
+          <a target="_blank">
+            <ion-icon (click)="book(i)" *ngIf="!item[5]" style="padding: 5px;font-size: 20px;color: #000;"
+              name="bookmark-outline"></ion-icon>
+          </a>
+          <a target="_blank">
+            <ion-icon (click)="book2(i)" *ngIf="item[5]" style="padding: 5px;font-size: 20px;color: #000;"
+              name="bookmark"></ion-icon>
+          </a>
+        </div>
+      </ion-item>
+    </ion-card>
+
   </div>
 </ion-content>
